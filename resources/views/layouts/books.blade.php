@@ -5,12 +5,13 @@
 		<div class="col-sm-offset-2 col-sm-8">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					Book list
+					New Book
 				</div>
 
 				<div class="panel-body">
 					@include('common.errors')
-					<from action="/book" method="POST" class="form-horizontal">
+
+					<form action="/book" method="POST" class="form-horizontal">
 						{{ csrf_field() }}
 
 						<div class="form-group">
@@ -19,45 +20,43 @@
 							<div class="col-sm-6">
 								<input type="text" name="name" id="book-name" class="form-control" value="{{ old('book') }}">
 							</div>
-
+						</div>
 
 						<div class="form-group">
 							<div class="col-sm-offset-3 col-sm-6">
 								<button type="submit" class="btn btn-default">
-									<i class="fa fa-plus"></i>
-									本を追加する
+									<i class="fa fa-plus"></i>Add a Book
 								</button>
 							</div>
 						</div>
 					</form>
 				</div>
+			</div>
 
-				@if (count($books) > 0)
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							Book list
-						</div>
+			@if (count($books) > 0)
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Booklist
+					</div>
 
-						<div class="panel-body">
-							<table class="table table-striped">
-								<thead>
-									<th>Book</th>
-									<th>$nbsp;</th>
-								</thead>
-								<tbody>
-									@foreach ($books as $book)
-										<tr>
-											<td class="table-text"</div>{{ $book->title }}
-											</div>
-										</td>
+					<div class="panel-body">
+						<table class="table table-striped task-table">
+							<thead>
+								<th>Book</th>
+								<th>&nbsp;</th>
+							</thead>
+							<tbody>
+								@foreach ($books as $book)
+									<tr>
+										<td class="table-text"><div>{{ $book->title }}</div></td>
 
-											<td>
-												<form action="/book/{{$book->id }}" method="POST">
-												{{	csrf_field() }}
-												{{	method_field('DELETE')	}}
+										<td>
+											<form action="/book/{{ $book->id }}" method="POST">
+												{{ csrf_field() }}
+												{{ method_field('DELETE') }}
 
 												<button type="submit" class="btn btn-danger">
-													<i class="fa fa-trash"></i>削除
+													<i class="fa fa-trash"></i>Delete
 												</button>
 											</form>
 										</td>
@@ -67,7 +66,7 @@
 						</table>
 					</div>
 				</div>
-				@endif
-			</div>
+			@endif
 		</div>
-	@endsction
+	</div>
+@endsection
