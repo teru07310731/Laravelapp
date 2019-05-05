@@ -21,7 +21,7 @@ use Illuminate\Http\Request;
 
 
 Route::group(['middleware' => ['web']], function() {
-	Route::get('/', function(){
+	Route::post('/', function(){
 		$books = Book::all();
 		return view('layouts.books', [
 			'books' => $books
@@ -30,11 +30,11 @@ Route::group(['middleware' => ['web']], function() {
 
 	Route::post('/book', function(Request $request) {
 		$validator = Validator::make($request->all(), [
-			'name' => 'requird[max:255',
+			'name' => 'required|max:255',
 		]);
 
 		if($validator->fails()) {
-			return requird('/')
+			return redirect('/')
 				->withInput()
 				->withErrors($validator);
 		}
@@ -43,10 +43,12 @@ Route::group(['middleware' => ['web']], function() {
 		$book->title = $request->name;
 		$book->save();
 
-		return reqirect('/');
+		return redirect('/');
 	});
 
 	Route::delete('/book/{book}', function(Book $book) {
 		$book->delete();
+
+		return redirect('/');
 	});
 });
