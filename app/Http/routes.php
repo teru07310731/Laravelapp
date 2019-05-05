@@ -43,14 +43,10 @@ Route::group(['middleware' => ['web']], function() {
 		$book->title = $request->name;
 		$book->save();
 
-		return request('/');
+		return reqirect('/');
 	});
 
 	Route::delete('/book/{book}', function(Book $book) {
 		$book->delete();
-
-		return redirect('');
 	});
-
-	Route::auth();
 });

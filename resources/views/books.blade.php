@@ -10,6 +10,7 @@
 
 				<div class="panel-body">
 					@include('common.errors')
+
 					<from action="/book" method="POST" class="form-horizontal">
 						{{ csrf_field() }}
 
@@ -24,8 +25,7 @@
 						<div class="form-group">
 							<div class="col-sm-offset-3 col-sm-6">
 								<button type="submit" class="btn btn-default">
-									<i class="fa fa-plus"></i>
-									本を追加する
+									<i class="fa fa-plus"></i>本を追加する
 								</button>
 							</div>
 						</div>
@@ -47,9 +47,7 @@
 								<tbody>
 									@foreach ($books as $book)
 										<tr>
-											<td class="table-text"</div>{{ $book->title }}
-											</div>
-										</td>
+											<td class="table-text"</div>{{ $book->title }}</div></td>
 
 											<td>
 												<form action="/book/{{$book->id }}" method="POST">
